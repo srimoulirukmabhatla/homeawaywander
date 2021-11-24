@@ -1,0 +1,27 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+	body{
+background-color:#222;
+color:white;
+			}
+.card-body{
+background-color: #222;
+color:white;
+}
+#BODY
+{  color: white;
+background-color: #222;
+}
+</style>
+<div class="col-md">
+<form method="POST" action="" enctype="multipart/form-data" >
+				{% csrf_token %}
+	<label >Your Experience here</label>
+	{{ form.media }}
+	{{form.as_p}}
+	<input class="btn btn-primary" type="submit" value="Submit" name="Update Information">
+	</form>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block content %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+	.profile-pic{
+		max-width: 200px;
+		max-height:200px;
+		margin: 0 auto;
+		border-radius: 50%;
+	}
+		body{
+background-color:#222;
+color:white;
+		}
+.card-body{
+background-color: #3e3b3f ;
+}
+</style>
+<center>
+		<div class="col-md-9">
+
+<div class="card card-body">
+	<div class="w3-container">
+	<table>
+        <thead>
+          <tr>
+              <th><button class="btn btn-primary" onclick="location.href='http://127.0.0.1:8000/user/following/'" type='button'>Posts</button></th>
+              <th><button class="btn btn-primary" onclick="location.href='http://127.0.0.1:8000/user/following/'" type='button'>Followers</button></th>
+              <th><button class=" btn btn-primary"onclick="location.href='http://127.0.0.1:8000/user/following/'" type='button'>Following</button></th>
+          </tr>
+        </thead>
+		<tbody>
+          <tr>
+            <td>{{questions.count}}
+                <br>
+                {%for ques in questions%}
+                <a href="{% url 'question-detail' ques.slug %}" class="btn btn-outline-light ">{{ques.body|safe|truncatewords:10}}</a>
+                <br>
+                <br>
+                <br>
+                {% endfor %}
+            </td>
+
+            <td>{{followers.count}}
+
+				{%for f in followers%}
+
+<br>               <br>
+                <a href="{% url 'profile-visit' f.following %}" class="btn btn-outline-light ">{{f.following}}</a>
+				{% endfor %}
+            </td>
+              <td>{{following.count}}
+				{%for f in following%}
+                  <br>
+                  <a href="{% url 'profile-visit' f.follower %}" class="btn btn-outline-light"	>{{f.follower}}</a>
+				{% endfor %}
+
+			</td>
+          </tr>
+
+        </tbody></tbody>
+      </table>
+</div>
+</div>
+		</div>
+</center>
+{% endblock %}

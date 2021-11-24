@@ -1,0 +1,52 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+body{
+background-color:#222;
+color:white;
+		}
+.card-body{
+background-color: #3e3b3f ;
+}
+    a:link {
+  color:  #3498db ;
+}
+
+/* visited link */
+a:visited {
+  color: white ;
+}
+
+/* mouse over link */
+a:hover {
+  color:  #3498db ;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap');
+
+</style>
+{% if not object_list%}
+<body>
+<center><h1 style="color:green ;font-family:'Hachi Maru Pop',cursive ;">No Results found !! </h1> </center>
+{% endif%}
+{% for ques in object_list%}
+
+<div class="card text-white bg-success mb-3" style="max-width: 75rem;">
+  <div class="card-body">
+    <h5 class="card-title">  <a href="{% url 'question-detail' ques.pk %}"><h3 class="flow-text">{{ques.body}}</h3></a></h5>
+      <p>By:- <a href="{%url 'profile-visit' ques.author.username%}"> {{ques.author}}</a> </p>
+    <p>{{ques.published_date}}</p>
+  </div>
+</div>
+
+{%endfor %}
+</body>
+{% endblock %}

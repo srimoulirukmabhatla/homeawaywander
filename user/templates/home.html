@@ -1,0 +1,69 @@
+{%  extends 'base.html' %}
+{% load static %}
+
+
+
+
+
+{% block content %}
+
+
+
+<style>
+body{
+background-color:#222;
+color:white;
+		}
+.card-body{
+background-color:  #3e3b3f   ;
+}
+
+/* visited link */
+/*a:visited {
+  color: white ;
+}*/
+
+/* mouse over link */
+/*a:hover {
+  color:  #3498db ;
+}*/
+
+/* selected link */
+a:active {
+  color: white;
+}
+.responsive {
+  max-width: 100%;
+  height: auto;
+}
+</style>
+<body>
+<div class="row">
+{%for ques in questions %}
+<div class="col" style="margin-left:40px; margin-right:20px;">
+<div class="card text-white bg-success mb-3" style="max-width: 50rem;">
+  <div class="card-body" style="background-color:MediumSeaGreen;">
+    <div class="w3-container" style="overflow: hidden;">
+       <a href="{% url 'question-detail' ques.slug %}">
+        <img  src="{{ques.ques_image.url}}" class="responsive" width="600" height="500"style="margin:10px;" />
+      </div>
+    <h5 class="card-title" style="margin-left: 30px;"> <h3 class="flow-text" style="margin-left:30px;">{{ques.body|safe}}</h3></a></h5>
+    {% if ques.author.username == user.username%}
+      <p style="margin-left:30px;">Destination Treasurer - {{ques.author}}<br><br><button type="button" onclick="location.href='{% url 'delete_post' ques.id %}'" class="btn btn-danger">Delete</button></p>
+      {% else %}
+      <p style="margin-left:30px;">Destination Treasurer - {{ques.author}}</p>
+    {%endif%}
+    <br>
+    <p style="margin-left:30px;">{{ques.published_date}}</p>
+  </div>
+</div >
+{% if forloop.counter|divisibleby:2%}
+</div></div><div class="row">
+  {% else %}
+</div>
+{%endif%}
+</a>
+{% endfor %}
+</div>
+</body>
+{% endblock %}

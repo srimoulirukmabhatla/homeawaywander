@@ -1,0 +1,108 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!--<head>-->
+<head>
+        <link rel="stylesheet" href="/static/css/tagsinput.css" /></head>
+<!--	        <meta charset="utf-8">-->
+<!--        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+<!--        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+<!--	</head>-->
+<!--   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
+<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
+
+
+<style>
+	body{
+background-color:#222;
+color:white;
+		}
+		input[type=text1]
+		{
+		background-color:#222;
+		color:white;
+		}
+ .bootstrap-tagsinput {
+    border: solid 1px #e9ecee;
+  border-radius: 0;
+  color: #8e9091;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  height: 72px;
+  padding: 8px 20px;
+  font-size: 16px;
+  }
+  .bootstrap-tagsinput input {
+  border: none;
+  border-radius: 0;
+  color: white;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  }
+  .badge-tag{
+    background-color: white;
+    color: white;
+  }
+  .bootstrap-tagsinput.form-control input::-moz-placeholder {
+    color: white;
+    opacity: 1;
+  }
+  .bootstrap-tagsinput.form-control input:-ms-input-placeholder {
+    color: white;
+  }
+  .bootstrap-tagsinput.form-control input::-webkit-input-placeholder {
+    color: white;
+  }
+  .bootstrap-tagsinput input:focus {
+    border: none;
+    box-shadow: none;
+  }
+  .bootstrap-tagsinput .badge {
+    margin-left: 4px;
+    padding:2px;
+  }
+  .bootstrap-tagsinput .badge [data-role="remove"] {
+    margin-left: 8px;
+    cursor: pointer;
+  }
+  .bootstrap-tagsinput .badge [data-role="remove"]:after {
+    content: "×";
+    padding: 0px 4px;
+    background-color:rgba(0, 0, 0, 0.1);
+    border-radius:50%;
+    font-size:13px
+  }
+  .bootstrap-tagsinput .badge [data-role="remove"]:hover:after {
+
+    background-color:rgba(0, 0, 0, 0.62);}
+  .bootstrap-tagsinput .badge [data-role="remove"]:hover:active {
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+
+
+</style>
+<div>
+			<center><h2>Add your Destination here</h2></center>
+
+ <div class="container pt-5">
+<form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+            
+                <div class="form-group">
+                    <label>Destination</label>
+                    <input type="text1" class="form-control" name="body" placeholder="Your next Destination. For e.g. Goa, Europe, Maldives">
+                </div>
+                <div class="form-group">
+                    <label>Image of your Trip</label>
+                    <input type="file" class="form-control" name="ques_image" placeholder="Upload Image here" >
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+		</div>
+    </div>
+    <script src="/static/js/tagsinput.js"></script>
+{% endblock %}

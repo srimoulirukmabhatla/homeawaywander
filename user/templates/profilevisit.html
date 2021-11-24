@@ -1,0 +1,47 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+	body{
+background-color:#222;
+color:white;
+		}
+.card-body{
+background-color: #3e3b3f ;
+}
+</style>
+<body>
+	<div class="col-md-3">
+		<div class="card card-body">
+				<br>
+				You are viewing Profile of<a href="{% url 'profile-visit' user_visit.username %}">{{user_visit.username}}</a>
+{%if is_follow%}
+			<a type="button" class="btn btn-outline-primary" id="follow" role="button" href="{% url 'follow-unfollow' user_visit.username %}">Unfollow</a>
+			{%elif not is_follow%}
+			<a type="button" class="btn btn-outline-primary" id="follow" role="button" href="{% url 'follow-unfollow' user_visit.username %}">Follow</a>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}
+	</body>
+{% block js %}
+<script>
+    $("#follow").click(function(e){
+        e.preventDefault();
+        var href = this.href;
+        $.ajax({
+            url : href,
+            success : function(response){
+            	console.log(response);
+                if(response["is_follow"]){
+                    $("#follow").html("Unfollow");
+                }
+                else{
+                    $("#follow").html("Follow");
+                }
+            }
+        })
+    })
+</script>
+{% endblock js%}

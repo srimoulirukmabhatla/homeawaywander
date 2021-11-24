@@ -1,0 +1,81 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+<style>
+    body{
+background-color:#222;
+color:white;
+		}
+		.btn
+		{
+		color:white;
+		}
+		.card-content{
+background-color:#222;
+color:white;
+		}
+		.card-action{
+background-color:#222;
+color:white;
+		}
+</style>
+<body>
+<br>
+<center>
+    <a class="btn" href="{% url 'clear-all'%}">Clear All</a>
+      </center>
+<br>
+    <h2 class="header">Notifications</h2>
+{% if not notifications.count%}
+<center>
+<h5>No new Notifications</h5>
+    </center>
+{% endif %}
+{% for noti in notifications %}
+{%if noti.notification_type == 1%}
+<div class="col s12 m7">
+    <div class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content">
+            <p><strong>{{noti.senderr}}</strong> just upvoted your experience <strong>{{noti.answer|safe}}</strong></p>
+        </div>
+        <div class="card-action" style="background-color:#222">
+          <a href="{% url 'clear-notification' noti.id %}">Clear</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{%elif noti.notification_type == 2%}
+<div class="col s12 m7">
+    <div class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content">
+            <p><strong>{{noti.senderr}}</strong> just downvoted your experience <strong>{{noti.answer|safe}}</strong></p>
+        </div>
+        <div class="card-action" style="background-color:#222">
+          <a href="{% url 'clear-notification' noti.id %}">Clear</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{%elif noti.notification_type == 3%}
+<div class="col s12 m7">
+    <div class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content">
+            <p><strong>{{noti.senderr}}</strong> just added an experience to your suggested Travel Destination <strong><a href="{% url 'question-detail' noti.answer.question.slug %}">{{noti.answer.question|safe}}</a></strong></p>
+        <br>
+            <p><h5>Ans:- </h5>{{noti.answer|safe}}</p>
+
+        </div>
+        <div class="card-action" style="background-color:#222">
+          <a href="{% url 'clear-notification' noti.id %}">Clear</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{%endif%}
+{% endfor %}
+</body>
+{% endblock %}
+
